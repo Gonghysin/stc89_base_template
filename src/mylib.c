@@ -90,3 +90,19 @@ void delay_ms_precise(unsigned int ms) {
 // void my_function(void) {
 //     // 你的代码
 // }
+
+
+// 点灯函数：根据列表控制P2口的8个LED
+// 参数：led_list - 长度为8的数组，索引0-7对应P2_0到P2_7，1为亮，0为灭
+void setLEDs(unsigned char led_list[8]) {
+    unsigned char i;
+    unsigned char p2_value = 0xFF;
+
+    for (i = 0; i < 8; i++) {
+        if (led_list[i]) {
+            p2_value &= ~(1 << i);
+        }
+    }
+
+    P2 = p2_value;
+}

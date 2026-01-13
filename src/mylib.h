@@ -62,4 +62,8 @@ void delay_ms_precise(unsigned int ms);
 // void my_function(void);
 // unsigned char get_value(void);
 
+/// @brief 点亮特定位置的LED
+/// @param led_list 传入一个列表，索引为对应灯（灯号 = 索引+1），值=1为亮，0为灭
+void setLEDs(unsigned char led_list[8]) ;
+
 #endif // MYLIB_H
