@@ -139,3 +139,9 @@ unsigned char key_scan(void){
 
     return 0;
 }
+
+void tran_num_to_LEDset(unsigned char *LEDset, char *num){
+    for(int i = 0; i < 8; i++){
+        LEDset[7 - i] = (*num >> i) & 0x01;
+    }
+}

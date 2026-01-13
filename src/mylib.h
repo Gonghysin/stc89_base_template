@@ -72,4 +72,9 @@ void setLEDs(unsigned char led_list[8]) ;
 /// @return 返回扫描到的按下的按钮（K1 - 1， K2 - 2， ……）
 unsigned char key_scan(void) ;
 
+/// @brief 将char（8位的数）转换为列表（相同的顺序）
+/// @param LEDset 传入列表的指针
+/// @param num 那个八位数的指针
+void tran_num_to_LEDset(unsigned char *LEDset, char *num);
+
 #endif // MYLIB_H
