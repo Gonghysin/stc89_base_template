@@ -5,6 +5,7 @@ project(stc89_demo C)
 set(SOURCES 
     src/main.c
     src/mylib.c
+    src/utils/seg_display.c
 )
 
 # 输出文件名
@@ -12,10 +13,12 @@ set(OUTPUT_NAME demo)
 
 # 自定义目标来编译 SDCC 项目
 add_custom_target(demo ALL
-    # 先编译 mylib.c 生成 mylib.rel (注意：需要切换到 build 目录再编译)
-    COMMAND sdcc -mmcs51 --std-c99 --model-small -c -I${CMAKE_CURRENT_SOURCE_DIR}/src -o ${CMAKE_CURRENT_BINARY_DIR}/mylib.rel ${CMAKE_CURRENT_SOURCE_DIR}/src/mylib.c
-    # 再编译 main.c 并链接 mylib.rel
-    COMMAND sdcc -mmcs51 --std-c99 --model-small -I${CMAKE_CURRENT_SOURCE_DIR}/src -o ${CMAKE_CURRENT_BINARY_DIR}/${OUTPUT_NAME}.ihx ${CMAKE_CURRENT_SOURCE_DIR}/src/main.c ${CMAKE_CURRENT_BINARY_DIR}/mylib.rel
+    # 先编译 seg_display.c
+    COMMAND sdcc -mmcs51 --std-c99 --model-small -c -I${CMAKE_CURRENT_SOURCE_DIR}/src -I${CMAKE_CURRENT_SOURCE_DIR}/src/utils -o ${CMAKE_CURRENT_BINARY_DIR}/seg_display.rel ${CMAKE_CURRENT_SOURCE_DIR}/src/utils/seg_display.c
+    # 编译 mylib.c
+    COMMAND sdcc -mmcs51 --std-c99 --model-small -c -I${CMAKE_CURRENT_SOURCE_DIR}/src -I${CMAKE_CURRENT_SOURCE_DIR}/src/utils -o ${CMAKE_CURRENT_BINARY_DIR}/mylib.rel ${CMAKE_CURRENT_SOURCE_DIR}/src/mylib.c
+    # 编译 main.c 并链接所有 .rel 文件
+    COMMAND sdcc -mmcs51 --std-c99 --model-small -I${CMAKE_CURRENT_SOURCE_DIR}/src -I${CMAKE_CURRENT_SOURCE_DIR}/src/utils -o ${CMAKE_CURRENT_BINARY_DIR}/${OUTPUT_NAME}.ihx ${CMAKE_CURRENT_SOURCE_DIR}/src/main.c ${CMAKE_CURRENT_BINARY_DIR}/mylib.rel ${CMAKE_CURRENT_BINARY_DIR}/seg_display.rel
     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
     COMMENT "Compiling with SDCC for MCS51..."
     SOURCES ${SOURCES}
