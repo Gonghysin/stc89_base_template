@@ -106,3 +106,34 @@ void setLEDs(unsigned char led_list[8]) {
 
     P2 = p2_value;
 }
+
+
+unsigned char key_scan(void){
+    if (P3_1 == 0) {
+        delay_ms(20);
+        while (P3_1 == 0) ;
+        delay_ms(20);
+        return 1;
+    }
+
+    if (P3_0 == 0) {
+        delay_ms(20);
+        while (P3_0 == 0) ;
+        delay_ms(20);
+        return 2;
+    }
+
+    if (P3_2 == 0) {
+        delay_ms(20);
+        while (P3_2 == 0) ;
+        delay_ms(20);
+        return 3;
+    }
+
+    if (P3_3 == 0) {
+        delay_ms(20);
+        while (P3_3 == 0) ;
+        delay_ms(20);
+        return 4;
+    }
+}

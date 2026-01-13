@@ -66,4 +66,10 @@ void delay_ms_precise(unsigned int ms);
 /// @param led_list 传入一个列表，索引为对应灯（灯号 = 索引+1），值=1为亮，0为灭
 void setLEDs(unsigned char led_list[8]) ;
 
+
+/// @brief 检测哪个独立按键有被按下（需要配合while使用）
+/// @param  
+/// @return 返回扫描到的按下的按钮（K1 - 1， K2 - 2， ……）
+unsigned char key_scan(void) ;
+
 #endif // MYLIB_H
