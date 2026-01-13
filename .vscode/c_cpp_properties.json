@@ -4,24 +4,10 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/**",
-                "/usr/share/sdcc/include/mcs51",
-                "/usr/share/sdcc/include"
+                "/usr/share/sdcc/include/**",
+                "/usr/local/share/sdcc/include/**"
             ],
-            "defines": [
-                "__SDCC_mcs51",
-                "__SDCC",
-                "__asm=",
-                "__endasm=",
-                "__at(x)=",
-                "__interrupt(x)=",
-                "__sfr=unsigned char",
-                "__sbit=unsigned char",
-                "__data=",
-                "__idata=",
-                "__xdata=",
-                "__code=",
-                "__bit=unsigned char"
-            ],
+            "defines": [],
             "compilerPath": "/usr/bin/sdcc",
             "cStandard": "c11",
             "cppStandard": "c++17",
