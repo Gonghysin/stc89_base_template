@@ -1,0 +1,9 @@
+build
+
+# Ignore all C and H files
+*.c
+*.h
+
+# But don't ignore these specific files
+!src/mylib.c
+!src/mylib.h
