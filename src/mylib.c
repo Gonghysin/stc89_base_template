@@ -136,4 +136,6 @@ unsigned char key_scan(void){
         delay_ms(20);
         return 4;
     }
+
+    return 0;
 }
