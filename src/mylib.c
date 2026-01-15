@@ -17,20 +17,22 @@
  * - 使用 STC-ISP 软件生成的精确延时参数
  * - 精度：接近实际 1ms (误差约±5%)
  */
-void delay_ms(unsigned int ms) {
-    unsigned char i, j;
+// void delay_ms(unsigned int ms) {
+//     unsigned char i, j;
     
-    // STC89C51RD (12T) @ 11.0592MHz
-    // 根据实测调整的精确参数（原来慢3倍，现在修正）
-    while (ms--) {
-        _nop_();
-        i = 1;
-        j = 140;
-        do {
-            while (--j);
-        } while (--i);
-    }
-}
+//     // STC89C51RD (12T) @ 11.0592MHz
+//     // 根据实测调整的精确参数（原来慢3倍，现在修正）
+//     while (ms--) {
+//         _nop_();
+//         i = 1;
+//         j = 140;
+//         do {
+//             while (--j);
+//         } while (--i);
+//     }
+// }
+
+
 
 /**
  * @brief 延时指定的微秒数
@@ -67,15 +69,6 @@ void timer0_init(void) {
     timer0_count = 0;
 }
 
-/**
- * @brief 定时器0中断服务函数
- */
-void timer0_isr(void) __interrupt(1) {
-    TH0 = 0xFC;
-    TL0 = 0x66;
-    timer0_count++;
-}
-
 
 
 
@@ -95,40 +88,25 @@ void setLEDs(unsigned char led_list[8]) {
 }
 
 
-unsigned char key_scan(void){
-    if (P3_1 == 0) {
-        delay_ms(20);
-        while (P3_1 == 0) ;
-        delay_ms(20);
-        return 1;
-    }
 
-    if (P3_0 == 0) {
-        delay_ms(20);
-        while (P3_0 == 0) ;
-        delay_ms(20);
-        return 2;
-    }
-
-    if (P3_2 == 0) {
-        delay_ms(20);
-        while (P3_2 == 0) ;
-        delay_ms(20);
-        return 3;
-    }
-
-    if (P3_3 == 0) {
-        delay_ms(20);
-        while (P3_3 == 0) ;
-        delay_ms(20);
-        return 4;
-    }
-
-    return 0;
-}
 
 void tran_num_to_LEDset(unsigned char *LEDset, char *num){
     for(int i = 0; i < 8; i++){
         LEDset[7 - i] = (*num >> i) & 0x01;
     }
+}
+
+
+// 移位函数
+
+unsigned char _crol_(unsigned char val, unsigned char n)
+{
+    n &= 7;  // 限制在 0-7 范围
+    return (val << n) | (val >> (8 - n));
+}
+
+unsigned char _cror_(unsigned char val, unsigned char n)
+{
+    n &= 7;
+    return (val >> n) | (val << (8 - n));
 }

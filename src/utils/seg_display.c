@@ -6,6 +6,7 @@
  #include "seg_display.h"
  #include "seg_table.h"
  #include "mylib.h"
+#include "timer.h"
 
 // 段码表定义
 __code unsigned char SEG_CODE[10] = {
@@ -111,7 +112,7 @@ void seg_scan(void) {
 
     SEG_DATA = display_buffer[scan_pos];
 
-    delay_ms(2);
+    delay_ms_timer(2);
 
     scan_pos++;
     if(scan_pos >= SEG_NUM) {

@@ -24,25 +24,45 @@ void delay_ms_timer(unsigned int ms)
     
 }
 
-// 定时器0中断服务程序
+// 在文件顶部声明全局函数指针
+static void (*timer_callback)(void) = 0;
+
+// 提供注册回调的函数
+void Timer0_SetCallback(void (*callback)(void))
+{
+    timer_callback = callback;
+}
+
+// // 定时器0中断服务程序
 void Timer0_ISR(void) __interrupt(1)
 {
-    static unsigned char cnt = 0;
+    // static unsigned char cnt = 0;
     
     TH0 = 0xFC;
     TL0 = 0x68;
     
-    // cnt++;
-    // if(cnt >= 250) {  // 每250ms翻转一次P2_7
-    //     P2_7 = !P2_7;  // 使用 ! 代替 ~ 避免警告
-    //     cnt = 0;
-    // }
+    // 调用注册的回调函数
+    if(timer_callback != 0) {
+        timer_callback();
+    }
 
     if(timer_delay_counter > 0)
     {
         timer_delay_counter--;
     }
 }
+
+// void Timer0_Routine(void (*function)(unsigned int* T0Count)) __interrupt(1)
+// {
+//     static unsigned int T0Count;
+//     TL0 = 0x18;
+//     TH0 = 0xFC;
+
+//     function(&T0Count);
+// }
+
+
+
 
 void Timer0_Init(void)
 {

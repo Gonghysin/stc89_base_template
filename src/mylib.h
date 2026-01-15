@@ -13,7 +13,7 @@
 // #include <8051.h>
 
 // SDCC 内置函数
-#define _nop_() __asm nop __endasm
+// #define _nop_() __asm nop __endasm
 // #define interrupt(x) __interrupt(x)
 
 /*---------------------------------------------------------------------------
@@ -78,5 +78,9 @@ unsigned char key_scan(void) ;
 /// @param LEDset 传入列表的指针
 /// @param num 那个八位数的指针
 void tran_num_to_LEDset(unsigned char *LEDset, char *num);
+
+// 循环移位函数声明
+unsigned char _crol_(unsigned char val, unsigned char n);
+unsigned char _cror_(unsigned char val, unsigned char n);
 
 #endif // MYLIB_H

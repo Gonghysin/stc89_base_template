@@ -1,5 +1,6 @@
 #include "matrix_keypad.h"
 #include "mylib.h"
+#include "timer.h"
 
 
 // 列扫描码（P1.3→列1, P1.2→列2, P1.1→列3, P1.0→列4）
@@ -34,17 +35,17 @@ unsigned char keypad_scan(void)
         // 设置当前列为0
         KEYPAD_PORT = col_scan[col];
 
-        delay_ms(1);
+        delay_ms_timer(1);
 
         key_value = KEYPAD_PORT;
 
         // 检测是否有按键按下
         if ((key_value & ROW_MASK) != ROW_MASK) {
             // 消抖
-            delay_ms(10);
+            delay_ms_timer(10);
 
             KEYPAD_PORT = col_scan[col];  // 重新设置当前列
-            delay_ms(1);                   // 短暂延时
+            delay_ms_timer(1);                   // 短暂延时
 
 
             key_value = KEYPAD_PORT;
@@ -54,7 +55,7 @@ unsigned char keypad_scan(void)
                     if ((key_value & ROW_MASK) == row_scan[row]) {
                         // 等待按键释放
                         while ((KEYPAD_PORT & ROW_MASK) != ROW_MASK);
-                        delay_ms(10); //消抖
+                        delay_ms_timer(10); //消抖
 
                         // 恢复所有列为高电平
                         KEYPAD_PORT = 0xFF;

@@ -26,6 +26,14 @@ void Timer0_Init(void);
  */
 void delay_ms_timer(unsigned int ms);
 
+/**
+ * @brief 设置定时器0的回调函数
+ * @param callback 回调函数指针（无参数无返回值）
+ */
+void Timer0_SetCallback(void (*callback)(void));
+
 void Timer0_ISR(void) __interrupt(1);
+
+extern volatile unsigned int timer_delay_counter;
 
 #endif
