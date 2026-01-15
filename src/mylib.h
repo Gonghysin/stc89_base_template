@@ -10,9 +10,11 @@
 #define MYLIB_H
 
 #include <8052.h>
+// #include <8051.h>
 
 // SDCC 内置函数
 #define _nop_() __asm nop __endasm
+#define interrupt(x) __interrupt(x)
 
 /*---------------------------------------------------------------------------
  * 系统配置
