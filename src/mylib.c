@@ -76,20 +76,7 @@ void timer0_isr(void) __interrupt(1) {
     timer0_count++;
 }
 
-/**
- * @brief 精确延时指定毫秒数
- */
-void delay_ms_precise(unsigned int ms) {
-    timer0_count = 0;
-    while (timer0_count < ms) {
-        // 等待定时器中断
-    }
-}
 
-// 示例：
-// void my_function(void) {
-//     // 你的代码
-// }
 
 
 // 点灯函数：根据列表控制P2口的8个LED

@@ -14,7 +14,7 @@
 
 // SDCC 内置函数
 #define _nop_() __asm nop __endasm
-#define interrupt(x) __interrupt(x)
+// #define interrupt(x) __interrupt(x)
 
 /*---------------------------------------------------------------------------
  * 系统配置

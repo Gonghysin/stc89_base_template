@@ -19,4 +19,13 @@
  */
 void Timer0_Init(void);
 
+/**
+ * @brief 基于Timer0的毫秒级延时函数
+ * @param ms 延时的毫秒数
+ * @note 需要先调用Timer0_Init()初始化定时器
+ */
+void delay_ms_timer(unsigned int ms);
+
+void Timer0_ISR(void) __interrupt(1);
+
 #endif

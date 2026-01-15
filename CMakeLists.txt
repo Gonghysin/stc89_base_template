@@ -40,6 +40,7 @@ add_custom_target(demo ALL
     
     # 然后链接所有 .rel 文件
     COMMAND sdcc ${SDCC_FLAGS} ${INCLUDE_DIRS} 
+            --no-dead-code
             ${REL_FILES}
             -o ${CMAKE_CURRENT_BINARY_DIR}/${OUTPUT_NAME}.ihx
     
