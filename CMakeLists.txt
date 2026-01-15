@@ -15,6 +15,7 @@ set(SDCC_FLAGS -mmcs51 --std-c99 --model-small)
 set(INCLUDE_DIRS 
     -I${CMAKE_CURRENT_SOURCE_DIR}/src 
     -I${CMAKE_CURRENT_SOURCE_DIR}/src/utils
+    -I/usr/share/sdcc/include/mcs51
 )
 
 # 生成 .rel 文件列表和编译命令
@@ -55,7 +56,7 @@ add_custom_command(TARGET demo POST_BUILD
 
 # 烧录目标
 add_custom_target(flash
-    COMMAND /home/hysin/miniconda3/bin/stcgal -P stc89 -p /dev/ttyUSB0 ${CMAKE_CURRENT_BINARY_DIR}/${OUTPUT_NAME}.ihx
+    COMMAND /home/hysin/miniconda3/bin/stcgal -P stc89 -b 115200 -p /dev/ttyUSB0 ${CMAKE_CURRENT_BINARY_DIR}/${OUTPUT_NAME}.ihx
     DEPENDS demo
     COMMENT "Flashing firmware to STC89C516RD+..."
 )

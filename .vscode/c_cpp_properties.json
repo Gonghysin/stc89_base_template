@@ -10,13 +10,37 @@
             ],
             "defines": [
                 "__SDCC",
-                "__SDCC_mcs51"
+                "__SDCC_mcs51",
+                "__SDCC_MODEL_SMALL",
+                // --- 添加以下宏定义来修复 IntelliSense ---
+                "__sfr=unsigned char",
+                "__sfr16=unsigned short",
+                "__sfr32=unsigned long",
+                "__sbit=unsigned char",
+                "__at(x)=",
+                "__interrupt(x)=",
+                "__critical=",
+                "__code=",
+                "__xdata=",
+                "__idata=",
+                "__pdata=",
+                "__data=",
+                "sfr=unsigned char",   // 以防使用旧式写法
+                "sbit=unsigned char",            // 以防使用旧式写法
+                "__asm=",     // 配合上面的注释，忽略结束标记（仅限简单情况）
+                "nop=",
+                "__endasm="
+
             ],
             "compilerPath": "/usr/bin/sdcc",
             "cStandard": "c99",
             "cppStandard": "c++17",
             "intelliSenseMode": "gcc-x64",
-            // "compileCommands": "${workspaceFolder}/build/compile_commands.json"
+            "compilerArgs": [
+                "-mmcs51"
+            ],
+            "forcedInclude": [] 
+
         }
     ],
     "version": 4
