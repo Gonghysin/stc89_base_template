@@ -131,3 +131,54 @@ void LCD_ShowBinNum(unsigned char row, unsigned char col, unsigned int num, unsi
     }
 }
 
+/**
+ * @brief 将有符号整数转换为字符串
+ * @param num 要转换的有符号整数（范围：-32768 到 32767）
+ * @return 指向字符串的指针（静态缓冲区，不可重入）
+ * @note 返回的字符串存储在静态缓冲区中，下次调用会覆盖
+ */
+char *tran_num_to_string(signed int num)
+{
+    static char buffer[7];  // 最大6位数字 + 符号 + '\0' = "-32768\0"
+    char temp[7];
+    unsigned char i = 0;
+    unsigned char j = 0;
+    unsigned int abs_num;
+    unsigned char is_negative = 0;
+    
+    // 处理负数
+    if (num < 0) {
+        is_negative = 1;
+        abs_num = -num;
+    } else {
+        abs_num = num;
+    }
+    
+    // 特殊情况：0
+    if (abs_num == 0) {
+        buffer[0] = '0';
+        buffer[1] = '\0';
+        return buffer;
+    }
+    
+    // 将数字逆序存入临时缓冲区
+    while (abs_num > 0) {
+        temp[i++] = '0' + (abs_num % 10);
+        abs_num /= 10;
+    }
+    
+    // 添加符号（如果是负数）
+    if (is_negative) {
+        buffer[j++] = '-';
+    }
+    
+    // 将临时缓冲区的内容反转到正式缓冲区
+    while (i > 0) {
+        buffer[j++] = temp[--i];
+    }
+    
+    // 添加字符串结束符
+    buffer[j] = '\0';
+    
+    return buffer;
+}

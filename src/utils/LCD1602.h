@@ -110,6 +110,11 @@ void LCD_ShowBinNum(unsigned char row, unsigned char col, unsigned int num, unsi
 /** @} */
 
 
+/// @brief 将正整数转换为字符串
+/// @param num 正整数
+/// @return 字符串指针
+char * tran_num_to_string(signed int num);
+
 
 
 
