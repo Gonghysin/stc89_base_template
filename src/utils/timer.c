@@ -52,14 +52,6 @@ void Timer0_ISR(void) __interrupt(1)
     }
 }
 
-// void Timer0_Routine(void (*function)(unsigned int* T0Count)) __interrupt(1)
-// {
-//     static unsigned int T0Count;
-//     TL0 = 0x18;
-//     TH0 = 0xFC;
-
-//     function(&T0Count);
-// }
 
 
 
@@ -76,3 +68,11 @@ void Timer0_Init(void)
 }
 
 
+// void Timer0_Routine(void (*function)(unsigned int* T0Count)) __interrupt(1)
+// {
+//     static unsigned int T0Count;
+//     TL0 = 0x18;
+//     TH0 = 0xFC;
+
+//     function(&T0Count);
+// }

@@ -101,7 +101,7 @@ unsigned char key_get_press(void)
             {
                 last_key_state[i] = 0;
                 debounce_cnt[i] = 0;
-                return i + 1;  // 返回按键编号
+                
             }
         }
         // 检测上升沿（从0到1，即按键释放）
@@ -109,6 +109,7 @@ unsigned char key_get_press(void)
         {
             last_key_state[i] = 1;
             debounce_cnt[i] = 0;
+            return i + 1;  // 返回按键编号
         }
         // 状态未改变，重置消抖计数
         else if (current_state == last_key_state[i])
