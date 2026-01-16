@@ -78,6 +78,10 @@ void LCD_ShowString(unsigned char row, unsigned char col, char *str) {
     }
 }
 
+void LCD_Clean_row(unsigned char row){
+    LCD_ShowString(row, 1, "                ");
+}
+
 unsigned int LCD_Pow(unsigned int x, unsigned char y){
     unsigned int result = 1;
     while(y--) {

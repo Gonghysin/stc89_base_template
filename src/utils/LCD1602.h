@@ -67,6 +67,10 @@ void LCD_ShowChar(unsigned char row, unsigned char col, char c);
  */
 void LCD_ShowString(unsigned char row, unsigned char col, char *str);
 
+/// @brief 清除一行
+/// @param row 行号（1-2）
+void LCD_Clean_row(unsigned char row);
+
 /**
  * @brief 在指定位置显示无符号十进制数
  * @param row 行号 (1-2)

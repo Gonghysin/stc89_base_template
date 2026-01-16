@@ -32,7 +32,7 @@ void delay_ms_timer(unsigned int ms);
  */
 void Timer0_SetCallback(void (*callback)(void));
 
-void Timer0_ISR(void) __interrupt(1);
+// void Timer0_ISR(void) __interrupt(1);
 
 extern volatile unsigned int timer_delay_counter;
 
