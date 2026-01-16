@@ -13,8 +13,10 @@
 // #include <8051.h>
 
 // SDCC 内置函数
-// #define _nop_() __asm nop __endasm
+#define _nop_() __asm NOP __endasm
 // #define interrupt(x) __interrupt(x)
+
+#define SBIT(name, addr, bit) __sbit __at(addr+bit) name
 
 /*---------------------------------------------------------------------------
  * 系统配置

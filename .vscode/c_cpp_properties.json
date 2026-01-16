@@ -28,7 +28,7 @@
                 "sfr=unsigned char",   // 以防使用旧式写法
                 "sbit=unsigned char",            // 以防使用旧式写法
                 "__asm=",     // 配合上面的注释，忽略结束标记（仅限简单情况）
-                "nop=",
+                "NOP=",
                 "__endasm="
 
             ],
