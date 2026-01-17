@@ -11,7 +11,7 @@ file(GLOB_RECURSE C_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/*.c")
 set(OUTPUT_NAME demo)
 
 # 编译标志
-set(SDCC_FLAGS -mmcs51 --std-c99 --model-small)
+set(SDCC_FLAGS -mmcs51 --std-c99 --model-small --stack-auto --opt-code-size)
 set(INCLUDE_DIRS 
     -I${CMAKE_CURRENT_SOURCE_DIR}/src 
     -I${CMAKE_CURRENT_SOURCE_DIR}/src/utils
@@ -40,7 +40,6 @@ add_custom_target(demo ALL
     
     # 然后链接所有 .rel 文件
     COMMAND sdcc ${SDCC_FLAGS} ${INCLUDE_DIRS} 
-            --no-dead-code
             ${REL_FILES}
             -o ${CMAKE_CURRENT_BINARY_DIR}/${OUTPUT_NAME}.ihx
     

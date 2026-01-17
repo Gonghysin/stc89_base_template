@@ -25,12 +25,14 @@
                 "__idata=",
                 "__pdata=",
                 "__data=",
-                "sfr=unsigned char",   // 以防使用旧式写法
-                "sbit=unsigned char",            // 以防使用旧式写法
-                "__asm=",     // 配合上面的注释，忽略结束标记（仅限简单情况）
+                "sfr=unsigned char",
+                "sbit=unsigned char",
+                "__bit=unsigned char",
+                "bit=unsigned char",
+                "__asm=",
                 "NOP=",
-                "__endasm="
-
+                "__endasm=",
+                "__reentrant=/* nothing */"
             ],
             "compilerPath": "/usr/bin/sdcc",
             "cStandard": "c99",

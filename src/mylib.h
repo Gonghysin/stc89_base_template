@@ -9,11 +9,20 @@
 #ifndef MYLIB_H
 #define MYLIB_H
 
+
+
 #include <8052.h>
 // #include <8051.h>
 
+
+typedef unsigned char u8;
+typedef unsigned int u16;
+
 // SDCC 内置函数
 #define _nop_() __asm NOP __endasm
+#define nop() __asm NOP __endasm
+#define reentrant __reentrant
+
 // #define interrupt(x) __interrupt(x)
 
 #define SBIT(name, addr, bit) __sbit __at(addr+bit) name
