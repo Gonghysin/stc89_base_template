@@ -17,30 +17,30 @@
  * - 使用 STC-ISP 软件生成的精确延时参数
  * - 精度：接近实际 1ms (误差约±5%)
  */
-// void delay_ms(unsigned int ms) {
-//     unsigned char i, j;
+void delay_ms(unsigned int ms) {
+    unsigned char i, j;
     
-//     // STC89C51RD (12T) @ 11.0592MHz
-//     // 根据实测调整的精确参数（原来慢3倍，现在修正）
-//     while (ms--) {
-//         _nop_();
-//         i = 1;
-//         j = 140;
-//         do {
-//             while (--j);
-//         } while (--i);
-//     }
-// }
+    // STC89C51RD (12T) @ 11.0592MHz
+    // 根据实测调整的精确参数（原来慢3倍，现在修正）
+    while (ms--) {
+        _nop_();
+        i = 1;
+        j = 140;
+        do {
+            while (--j);
+        } while (--i);
+    }
+}
 
 
 
 /**
  * @brief 延时指定的微秒数
- * @param us 延时时间（微秒）
+ * @param ten_us 输入1，延时10us（微秒）
  * @note STC89C51RD @ 11.0592MHz (12T单片机)，适用于 us >= 14
  */
-void delay_us(unsigned int us) {
-    while (us--) {
+void delay_10us(unsigned int ten_us) {
+    while (ten_us--) {
         // 空循环体，编译器会保留循环
     }
 }

@@ -17,6 +17,7 @@
 
 typedef unsigned char u8;
 typedef unsigned int u16;
+typedef unsigned long u32;
 
 // SDCC 内置函数
 #define _nop_() __asm NOP __endasm
@@ -50,7 +51,7 @@ void delay_ms(unsigned int ms);
  * @param us 延时时间（微秒）
  * @note 精度有限，建议用于 us >= 5 的情况
  */
-void delay_us(unsigned int us);
+void delay_10us(unsigned int ten_us);
 
 /**
  * @brief 初始化定时器0用于精确延时
